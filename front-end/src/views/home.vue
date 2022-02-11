@@ -21,13 +21,29 @@
 
 
 <script>
-
+import axios from "axios";
 export default {
   data() {
     return {
-      postanduser: [{"title":"mockup","description":"mockup","email":"mockup","phone_number":"mockup"}],
+      postanduser: [],
     };
   },
-
+  methods: {},
+  mounted() {
+    axios
+      .get("http://localhost:3000/post/" + localStorage.getItem("id"))
+      .then((res) => {
+        for (let i = 0; i < res.data.length; i++) {
+          this.postanduser.push(res.data[i]);
+        }
+      });
+    axios
+      .get("http://localhost:3000/user/" + localStorage.getItem("id"))
+      .then((res) => {
+        for (let i = 0; i < res.data.length; i++) {
+          this.postanduser.push(res.data[i]);
+        }
+      });
+  },
 };
 </script>
