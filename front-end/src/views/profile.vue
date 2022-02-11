@@ -45,13 +45,21 @@
 </template>
 
 <script>
-// import axios from "axios";
 
 export default {
   data() {
     return {
-      username: "test01",
+      username: "",
     };
+  },
+
+  methods: {
+    logout() {
+      localStorage.clear();
+    },
+  },
+  mounted() {
+    this.username = localStorage.getItem("name");
   },
 };
 </script>
