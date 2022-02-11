@@ -106,6 +106,7 @@
   </div>
 </template>
 <script>
+import axios from "axios";
 
 export default {
   data() {
@@ -116,6 +117,18 @@ export default {
   },
 
   methods: {
+    Change() {
+      axios
+        .put("http://localhost:3000/profile/" + localStorage.getItem("id"), {
+          tag: this.tag,
+        })
+        .then(() => {
+          this.$router.push({ name: "profile" });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
     onChange(event) {
       this.tag.push(event.target.value);
     },
@@ -138,6 +151,19 @@ export default {
 
 
     },
+  },
+  created() {
+    axios
+      .get("http://localhost:3000/login/" + localStorage.getItem("name"))
+      .then((res) => {
+        for (var i = 0; i < res.data[0].tag.length; i++) {
+          this.tag.push(res.data[0].tag[i]);
+        }
+        console.log(this.tag);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
 };
 </script>
