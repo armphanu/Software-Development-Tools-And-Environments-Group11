@@ -52,7 +52,7 @@ export default {
   methods: {
     cf_register() {
          axios
-            .post("http://localhost:3000/register",{
+            .post("https://backend-exercise101.herokuapp.com/register",{
                   user_name: this.username,
                   password: this.password,
                   phone_number: this.phone_number,

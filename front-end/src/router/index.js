@@ -31,13 +31,6 @@ const routes = [
     name: 'editProfile',
     component: () => import('../views/editProfile.vue')// set login as path '/login'
   },
-
-  {
-    path: '/createpost',
-    meta: {guess: true},
-    name: 'createpost',
-    component: () => import('../views/createpost.vue')// set login as path '/login'
-  },
 ]
 const router = new VueRouter({
   mode: 'history',

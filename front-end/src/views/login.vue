@@ -49,7 +49,7 @@ export default {
   methods: {
     login() {
       axios
-        .get("http://localhost:3000/login/" + this.username, {})
+        .get("https://backend-exercise101.herokuapp.com/login/" + this.username, {})
         .then((response) => {
           console.log(response.data.length);
           if (response.data.length > 0) {

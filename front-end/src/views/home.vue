@@ -55,14 +55,14 @@ export default {
   methods: {},
   mounted() {
     axios
-      .get("http://localhost:3000/post/" + localStorage.getItem("id"))
+      .get("https://backend-exercise101.herokuapp.com/post/" + localStorage.getItem("id"))
       .then((res) => {
         for (let i = 0; i < res.data.length; i++) {
           this.post.push(res.data[i]);
         }
       });
     axios
-      .get("http://localhost:3000/user/" + localStorage.getItem("id"))
+      .get("https://backend-exercise101.herokuapp.com/user/" + localStorage.getItem("id"))
       .then((res) => {
         for (let i = 0; i < res.data.length; i++) {
           this.user.push(res.data[i]);

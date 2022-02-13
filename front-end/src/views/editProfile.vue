@@ -119,7 +119,7 @@ export default {
   methods: {
     Change() {
       axios
-        .put("http://localhost:3000/profile/" + localStorage.getItem("id"), {
+        .put("https://backend-exercise101.herokuapp.com/profile/" + localStorage.getItem("id"), {
           tag: this.tag,
         })
         .then(() => {
