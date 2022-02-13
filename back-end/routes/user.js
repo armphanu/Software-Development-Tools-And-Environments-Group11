@@ -22,6 +22,11 @@ router.put('/profile/:id', async (req, res) => {
     const { id } = req.params
     const user = await User.find({_id : id})
     const userall = await User.find({})
+    for(let k =0; k < userall.length; k++){
+      if(userall[k]._id == id){
+        userall.splice(k, 1);
+      }
+    }
     if(user[0].tag.length == 0){
       res.json(userall)
     }else{
@@ -35,15 +40,14 @@ router.put('/profile/:id', async (req, res) => {
         }
       }
     }
+    
     var sort = userall.sort((a, b) => {
       return a.count - b.count;
   });
    sort = sort.filter(function( obj ) {
     return obj.count !== 0;
    });
-
     sort.reverse();
-  
     res.json(sort)
   }
   })
