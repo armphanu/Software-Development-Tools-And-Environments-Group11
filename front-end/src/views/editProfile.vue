@@ -154,7 +154,7 @@ export default {
   },
   created() {
     axios
-      .get("http://localhost:3000/login/" + localStorage.getItem("name"))
+      .get("https://backend-exercise101.herokuapp.com/login/" + localStorage.getItem("name"))
       .then((res) => {
         for (var i = 0; i < res.data[0].tag.length; i++) {
           this.tag.push(res.data[0].tag[i]);

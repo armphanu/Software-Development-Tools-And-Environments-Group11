@@ -1,4 +1,4 @@
-# myfrontend
+# todoapp
 
 ## Project setup
 ```

@@ -32,3 +32,5 @@ app.use(registerRouter.router)
 app.listen(PORT, () => {
   console.log(`Application is running on port ${PORT}`)
 })
+
+module.exports = app

@@ -10,9 +10,9 @@
       />
       <p>{{ this.username }}</p>
       <p>
-        <a
+        <a 
           ><font size="2">
-            <router-link to="/editProfile">
+            <router-link to="/editProfile" class="edit_profile">
               Edit profile
             </router-link></font
           ></a
