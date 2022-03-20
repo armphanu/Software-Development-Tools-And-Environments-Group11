@@ -7,7 +7,7 @@ describe('e2e test', () => {
      })
     
     it('Go to edit profile page', () => {
-         cy.visit('http://localhost:8080')
+         cy.visit('https://exercise-commu-app123.herokuapp.com')
          cy.get('.nav-link').click()
          cy.get(':nth-child(1) > :nth-child(1) > .dropdown-item').click()
         //  cy.url().should('eq', 'http://localhost:8080/profile')
@@ -38,13 +38,5 @@ describe('e2e test', () => {
         cy.get('.col >').its('length').should('be.gte', 1)
        
     })
-
-    
-     
-    //  it('delete tag', () => {
-    //    cy.get('.btn-danger').eq(0).click() .screenshot()
-    //    cy.get('.btn-danger').should('have.length', 2)
-    //    cy.screenshot()
-    //  })
 
    })
