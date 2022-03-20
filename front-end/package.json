@@ -8,6 +8,8 @@
     "test:unit": "vue-cli-service test:unit --coverage --detectOpenHandles --forceExit",
     "lint": "vue-cli-service lint",
     "all_test": "cypress run",
+    "component_test":"cypress run --spec 'cypress/integration/compoent_test.spec.js'",
+    "e2e_test":"cypress run --spec 'cypress/integration/e2e_test.spec.js'",
     "cypress:open": "cypress open",
     "start": "node server.js"
   },
