@@ -1,0 +1,39 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Pull Code') {
+            steps {
+                git branch: 'main', url: 'https://github.com/armphanu/Software-Development-Tools-And-Environments-Group11.git'
+            }
+        }
+        stage('Download dependency') {
+            steps {
+                sh '''cd back-end
+                npm install'''
+            }
+        }
+        stage('Run unit test') {
+            steps {
+                    echo 'npm run test:unit'
+            }
+        }
+
+        stage('Run component test') {
+            steps {
+                    sh '''cd back-end
+                    npm run test'''
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'deploy'
+            }
+        }
+        stage('Notification') {
+            steps {
+                echo 'All Stage pass'
+            }
+        }
+    }
+}
