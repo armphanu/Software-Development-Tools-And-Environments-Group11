@@ -8,8 +8,8 @@
     "test:unit": "vue-cli-service test:unit --coverage --detectOpenHandles --forceExit",
     "lint": "vue-cli-service lint",
     "all_test": "cypress run",
-    "component_test":"cypress run --spec 'cypress/integration/compoent_test.spec.js'",
-    "e2e_test":"cypress run --spec 'cypress/integration/e2e_test.spec.js'",
+    "component_test": "cypress run --spec 'cypress/integration/compoent_test.spec.js'",
+    "e2e_test": "cypress run --spec 'cypress/integration/e2e_test.spec.js'",
     "cypress:open": "cypress open",
     "start": "node server.js"
   },
@@ -17,6 +17,7 @@
     "@cypress/vue": "^1.1.0-alpha.3",
     "axios": "^0.26.0",
     "core-js": "^3.6.5",
+    "cypress-mochawesome-reporter": "^3.0.0",
     "vue": "^2.6.11",
     "vue-router": "^2.8.1"
   },
@@ -29,7 +30,7 @@
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/test-utils": "^1.0.3",
     "babel-eslint": "^10.1.0",
-    "cypress": "^9.5.0",
+    "cypress": "^9.5.2",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^6.2.2",
