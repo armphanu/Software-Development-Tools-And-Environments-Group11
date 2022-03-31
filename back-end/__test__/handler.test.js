@@ -192,66 +192,11 @@ describe("Test example", () => {
       .get("/post/62073b323436e1d3be63c7b0")
       .expect("Content-Type", /json/)
       .expect(200)
-      .end((err, res) => {
-        if (err) return done(err);
-        return done();
-      });
   });
   test("GET /user/:id",  () => {
     request(app)
       .get("/user/62073b323436e1d3be63c7b0")
       .expect("Content-Type", /json/)
       .expect(200)
-      .end((err, res) => {
-        if (err) return done(err);
-        return done();
-      });
   });
-  // test("GET /login/armzaz", (done) => {
-  //   request(app)
-  //     .get("/login/String")
-  //     .expect("Content-Type", /json/)
-  //     .expect(200)
-  //     .expect((res) => {
-  //       console.log(res.body)
-  //     })
-  //     .end((err, res) => {
-  //       if (err) return done(err);
-  //       return done();
-  //     });
-  // });
-  
-  // test("GET /login/armzaz", (done) => {
-  //   request(app)
-  //     .get("/login/String")
-  //     .expect("Content-Type", /json/)
-  //     .expect(200)
-  //     .expect((res) => {
-  //       console.log(res.body)
-  //     })
-  //     .end((err, res) => {
-  //       if (err) return done(err);
-  //       return done();
-  //     });
-  // });
-  // test("POST /register", (done) => {
-    
-  //   jest.spyOn(UserModel.prototype, 'save')
-  //   .mockImplementationOnce(() => Promise.reject('fail update'))
-    
-  //   request(app)
-  //     .post("/register")
-  //     .expect("Content-Type", /json/)
-  //     .send({
-  //       user_name: 'this.username',
-  //       password: 'this.password',
-  //       phone_number: 'this.phone_number',
-  //       email: 'this.email',
-  //       first_name: 'this.first_name',
-  //       last_name: 'this.last_name',
-  //       tag:[]
-  //     })
-  //     .end((err, res) => {
-  //     });
-  // }, 60000);
 });
