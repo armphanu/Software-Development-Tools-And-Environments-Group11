@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Pull Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/armphanu/Software-Development-Tools-And-Environments-Group11.git'
+                checkout scm
             }
         }
         stage('Download dependency') {
@@ -15,15 +15,54 @@ pipeline {
         }
         stage('Run unit test') {
             steps {
-                    echo 'npm run test:unit'
+                    sh '''cd back-end
+                    rm -rf coverage_unit
+                    rm -rf test-report_unit.html
+                    npm i jest-html-reporter
+                    npm test -- unit.test.js
+                    mv  coverage coverage_unit
+                    mv  test-report.html test-report_unit.html
+                    cd coverage_unit
+                    mv  clover.xml clover_unit.xml
+                    '''
             }
+        }
+        stage('Create code coverage unit test') {
+            steps {
+                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'back-end/coverage_unit/lcov-report', reportFiles: 'index.html', reportName: 'unit code coverage Report', reportTitles: 'unit code coverage Report'])
+            }
+ 
+        }
+        stage('Create test report unit test') {
+            steps {
+                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'back-end', reportFiles: 'test-report_unit.html', reportName: 'unit Test Report', reportTitles: 'unit Test Report'])
+            }
+ 
         }
 
         stage('Run component test') {
             steps {
                     sh '''cd back-end
-                    npm run test'''
+                    npm test -- handler.test.js'''
             }
+        }
+        
+        stage('Create code coverage component test') {
+            steps {
+                    clover(cloverReportDir: 'back-end/coverage', cloverReportFileName: 'clover.xml',
+                    healthyTarget: [methodCoverage: 70, conditionalCoverage: 80, statementCoverage: 80],
+                    unhealthyTarget: [methodCoverage: 0, conditionalCoverage: 0, statementCoverage: 0],
+                    failingTarget: [methodCoverage: 0, conditionalCoverage: 0, statementCoverage: 0]
+                )
+                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'back-end/coverage/lcov-report', reportFiles: 'index.html', reportName: 'component code coverage Report', reportTitles: 'component code coverage Report'])
+            }
+ 
+        }
+        stage('Create test report component test') {
+            steps {
+                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'back-end', reportFiles: 'test-report.html', reportName: 'component Test Report', reportTitles: 'component Test Report'])
+            }
+ 
         }
         stage('Deploy') {
             steps {
