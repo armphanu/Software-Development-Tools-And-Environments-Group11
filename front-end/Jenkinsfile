@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Pull Code') {
             steps {
-                git branch: 'matching_post', credentialsId: 'bb2785d0-d692-4cc6-839d-7f17113657c5', url: 'https://github.com/armphanu/Software-Development-Tools-And-Environments-Group11.git'
+                git branch: 'matching_post', credentialsId: 'f2b4b00f-0722-4594-aba8-8803a3933525', url: 'https://github.com/armphanu/Software-Development-Tools-And-Environments-Group11.git'
             }
         }
         stage('Download dependency') {
@@ -65,10 +65,10 @@ pipeline {
 
         stage('tagging  github'){
             steps{
-                withCredentials([gitUsernamePassword(credentialsId: 'bb2785d0-d692-4cc6-839d-7f17113657c5', gitToolName: 'git-tool')]) {
-                    sh 'git tag 1.0.4' 
+                withCredentials([gitUsernamePassword(credentialsId: 'f2b4b00f-0722-4594-aba8-8803a3933525', gitToolName: 'git-tool')]) {
+                    sh 'git tag 1.0.5' 
                     sh 'git tag'
-                    sh 'git push origin 1.0.4'
+                    sh 'git push origin 1.0.5'
                 }
                
             }
