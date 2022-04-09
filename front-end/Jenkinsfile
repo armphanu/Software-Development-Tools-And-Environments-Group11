@@ -68,7 +68,8 @@ pipeline {
             steps {
                     withCredentials([usernamePassword(credentialsId: 'f2b4b00f-0722-4594-aba8-8803a3933525', passwordVariable: 'jamew000', usernameVariable: 'Thanawat080')]) {
                         sh'''
-                        git tag
+                        git tag 1.1.0
+                        git push origin 1.1.0
                         '''
                     }
 
