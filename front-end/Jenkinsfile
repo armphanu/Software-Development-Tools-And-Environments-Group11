@@ -66,31 +66,31 @@ pipeline {
         stage('tagging  github'){
             steps{
                 withCredentials([gitUsernamePassword(credentialsId: '7882d410-36db-40f1-9bd4-80675b0f5556', gitToolName: 'git-tool')]) {
-                    sh 'git tag 1.0.5' 
+                    sh 'git tag ' + BUILD_NUMBER + 'front-end'
                     sh 'git tag'
-                    sh 'git push origin 1.0.5'
+                    sh 'git push origin ' + BUILD_NUMBER + 'front-end'
                 }
                
             }
         }
 
-        stage('Build image') {
-            agent {
-                 docker { image 'node:16-alpine3.14' }
-                }
-            steps {
-                    sh '''cd front-end
-                    docker build -t team-11-frontend:1.1.0
-                    '''
+        // stage('Build image') {
+        //     agent {
+        //          docker { image 'node:16-alpine3.14' }
+        //         }
+        //     steps {
+        //             sh '''cd front-end
+        //             docker build -t team-11-frontend:1.1.0
+        //             '''
 
-            }
-        }
-        stage('push to dockerhub') {
-            steps {
-                   sh '''docker push armphanu/team-11-frontend:1.1.0
-                   '''
-            }
-        }
+        //     }
+        // }
+        // stage('push to dockerhub') {
+        //     steps {
+        //            sh '''docker push armphanu/team-11-frontend:1.1.0
+        //            '''
+        //     }
+        // }
         stage('Deploy') {
             steps {
                 echo 'Deploy'
