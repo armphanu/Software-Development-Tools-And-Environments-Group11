@@ -73,7 +73,7 @@ pipeline {
             }
         }
         stage('push docker') {
-            agent {port: '159.65.12.177'}
+            agent {label: '159.65.12.177'}
             steps {
                    sh '''docker tag team-11-front-end:1.1.0 armphanu/team-11-frontend:1.1.0
                    docker push armphanu/team-11-frontend:1.1.0
