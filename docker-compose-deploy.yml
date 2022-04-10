@@ -3,7 +3,7 @@ services:
   frontend:
     image: armphanu/team-11-frontend
     ports:
-      - "9999:80"
+      - "8888:80"
   backtend:
     image: armphanu/team-11-backend
     ports:
