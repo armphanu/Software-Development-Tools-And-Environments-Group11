@@ -66,9 +66,9 @@ pipeline {
         stage('tagging  github'){
             steps{
                 withCredentials([gitUsernamePassword(credentialsId: '7882d410-36db-40f1-9bd4-80675b0f5556', gitToolName: 'git-tool')]) {
-                    sh 'git tag ' + '1.0.'+ BUILD_NUMBER + 'f'
+                    sh 'git tag ' + '1.0.'+ BUILD_NUMBER
                     sh 'git tag'
-                    sh 'git push origin ' + '1.0.' + BUILD_NUMBER + 'f'
+                    sh 'git push origin ' + '1.0.' + BUILD_NUMBER
                 }
                
             }
@@ -98,10 +98,11 @@ pipeline {
         }
         stage('Notification') {
             steps {
-                mail to: '62070080@it.kmitl.ac.th, 62070149@it.kmitl.ac.th',               
-                    subject: "Job $JOB_NAME success" ,
-                    body: """Build $BUILD_NUMBER success.    
-                    Go to $BUILD_URL for more info."""
+                // mail to: '62070080@it.kmitl.ac.th, 62070149@it.kmitl.ac.th',               
+                //     subject: "Job $JOB_NAME success" ,
+                //     body: """Build $BUILD_NUMBER success.    
+                //     Go to $BUILD_URL for more info."""
+                echo 'test'
             }
         }
     }
