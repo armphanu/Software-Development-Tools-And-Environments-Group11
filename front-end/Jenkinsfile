@@ -98,7 +98,10 @@ pipeline {
         }
         stage('Notification') {
             steps {
-                echo 'All Stage pass'
+                mail to: '62070080@it.kmitl.ac.th, 62070149@it.kmitl.ac.th',               
+                    subject: "Job $JOB_NAME success" ,
+                    body: """Build $BUILD_NUMBER success.    
+                    Go to $BUILD_URL for more info."""
             }
         }
     }
