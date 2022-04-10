@@ -1,8 +1,8 @@
 version: "3"  # optional since v1.27.0
 services:
   frontend:
-    image: armphanu/team-11-frontend
+    image: armphanu/team-11-frontend:1.0.0
     build: ./front-end
   backtend:
-    image: armphanu/team-11-backend
+    image: armphanu/team-11-backend:1.0.0
     build: ./back-end

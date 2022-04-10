@@ -64,9 +64,33 @@ pipeline {
             }
  
         }
-        stage('Deploy') {
+        stage('deploy') {
             steps {
-                echo 'deploy'
+                script{
+                    def remote = [:]
+                    remote.name = "root"
+                    remote.host = '159.223.45.216'
+                    remote.user = 'root'
+                    remote.password = 'xitgmLwmp12q'
+                    remote.allowAnyHosts = true
+                    sshCommand remote: remote, command: "git clone -b matching_post https://github.com/armphanu/Software-Development-Tools-And-Environments-Group11.git"
+                    sshCommand remote: remote, command: "docker-compose -f Software-Development-Tools-And-Environments-Group11/docker-compose-build.yml build backtend"
+                    sshCommand remote: remote, command: "docker-compose -f Software-Development-Tools-And-Environments-Group11/docker-compose-deploy.yml up -d backtend"
+                    sshCommand remote: remote, command: "rm -r Software-Development-Tools-And-Environments-Group11"
+
+                }
+            }
+            post{
+                failure{
+                    script{
+                        def testing = build job: "team-11-frontend"
+                        sh '$testing.getNumber()'
+                    }
+                    withCredentials([gitUsernamePassword(credentialsId: '7882d410-36db-40f1-9bd4-80675b0f5556', gitToolName: 'git-tool')]) {
+                    sh 'git tag -d ' + '1.0.'+ $testing.getNumber()
+                    }
+                        
+                }
             }
         }
         stage('Notification') {
