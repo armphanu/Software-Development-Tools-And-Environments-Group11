@@ -74,35 +74,32 @@ pipeline {
             }
         }
 
-        // stage('Build image') {
-        //     agent {
-        //          docker { image 'node:16-alpine3.14' }
-        //         }
-        //     steps {
-        //             sh '''cd front-end
-        //             docker build -t team-11-frontend:1.1.0
-        //             '''
-
-        //     }
-        // }
-        // stage('push to dockerhub') {
-        //     steps {
-        //            sh '''docker push armphanu/team-11-frontend:1.1.0
-        //            '''
-        //     }
-        // }
-        stage('Deploy') {
+        stage('deploy') {
             steps {
-                echo 'Deploy'
+                script{
+                    def remote = [:]
+                    remote.name = "root"
+                    remote.host = '159.65.12.177'
+                    remote.user = 'root'
+                    remote.password = 'xitgmLwmp12q'
+                    remote.allowAnyHosts = true
+                    sshCommand remote: remote, command: "git clone -b matching_post https://github.com/armphanu/Software-Development-Tools-And-Environments-Group11.git"
+                    sshCommand remote: remote, command: "docker-compose -f Software-Development-Tools-And-Environments-Group11/docker-compose-build.yml build frontend"
+                    sshCommand remote: remote, command: "docker-compose -f Software-Development-Tools-And-Environments-Group11/docker-compose-deploy.yml up -d frontend"
+                    sshCommand remote: remote, command: "rm -r Software-Development-Tools-And-Environments-Group11"
+
+                }
+                post{
+                    failure{
+                        sh 'git tag -d ' + '1.0.'+ BUILD_NUMBER
+                        
+                    }
+                }
             }
         }
         stage('Notification') {
             steps {
-                // mail to: '62070080@it.kmitl.ac.th, 62070149@it.kmitl.ac.th',               
-                //     subject: "Job $JOB_NAME success" ,
-                //     body: """Build $BUILD_NUMBER success.    
-                //     Go to $BUILD_URL for more info."""
-                echo 'test'
+                echo 'all state success'
             }
         }
     }
