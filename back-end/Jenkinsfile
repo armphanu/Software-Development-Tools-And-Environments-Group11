@@ -87,7 +87,7 @@ pipeline {
                         sh '$testing.getNumber()'
                     }
                     withCredentials([gitUsernamePassword(credentialsId: '7882d410-36db-40f1-9bd4-80675b0f5556', gitToolName: 'git-tool')]) {
-                    sh 'git tag -d ' + '1.0.'+ BUILD_NUMBER
+                    sh 'git tag -d ' + '1.0.'+ $testing.getNumber()
                     }
                         
                 }
