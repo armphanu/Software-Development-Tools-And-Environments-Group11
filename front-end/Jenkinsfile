@@ -89,11 +89,11 @@ pipeline {
                     sshCommand remote: remote, command: "rm -r Software-Development-Tools-And-Environments-Group11"
 
                 }
-                post{
-                    failure{
-                        sh 'git tag -d ' + '1.0.'+ BUILD_NUMBER
+            }
+            post{
+                failure{
+                    sh 'git tag -d ' + '1.0.'+ BUILD_NUMBER
                         
-                    }
                 }
             }
         }
