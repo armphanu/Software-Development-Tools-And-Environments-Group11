@@ -162,3 +162,24 @@
 
   </div>
 </template>
+
+<style>
+#ment:hover {
+  cursor: pointer;
+}
+#love:hover {
+  cursor: pointer;
+}
+#report:hover {
+  cursor: pointer;
+}
+.modal-backdrop {
+    z-index: 1040 !important;
+    display: none;  
+}
+.modal-content {
+    margin: 2px auto;
+    z-index: 1100 !important;
+}
+
+</style>
