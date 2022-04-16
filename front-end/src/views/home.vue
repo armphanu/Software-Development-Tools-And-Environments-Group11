@@ -7,6 +7,12 @@
       <div class="card text-center">
         <div class="card-header">
           <h2>{{ value.title }}</h2>
+          <router-link
+                  :to="`/Like_Comment_Follow_Report/${value._id}`"
+                  style="text-decoration: none; color: #41464b"
+                >
+                    {{ value.title }}
+                </router-link>
         </div>
         <div class="card-body" v-show="value.description != 'undefind'">
           {{ value.description }}
