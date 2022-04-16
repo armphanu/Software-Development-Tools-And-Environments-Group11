@@ -186,7 +186,27 @@ export default {
   },
   
   created() {
-    
+    axios
+      .get('http://localhost:3000/specificpost/' + this.$route.params.id)
+      .then((res) => {
+        this.allcomment = res.data[0].comment
+        this.alllike = res.data[0].like
+        this.allreport = res.data[0].report
+
+        for (let i = 0; i < this.alllike.length; i++) {
+          if (this.alllike[i].like) {
+            this.countlike += 1
+          }
+          if (this.alllike[i].userid == localStorage.getItem('id')) {
+            if (this.alllike[i].like) {
+              this.color = 'pink'
+            }
+          }
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     axios
       .get('http://localhost:3000/specificuser/' + localStorage.getItem('id'))
       .then((res) => {
