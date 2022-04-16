@@ -24,6 +24,16 @@ router.put('/like/:postid', async (req, res)=>{
         res.send(doc)
 })
 
+router.put('/report/:postid', async (req, res)=>{
+    const { postid } = req.params
+    const filter = { _id: postid };
+    let doc = await Post.findOneAndUpdate(filter, req.body, {
+        returnOriginal: false
+        });
+        doc.save()
+        res.send(doc)
+})
+
 
 
 
