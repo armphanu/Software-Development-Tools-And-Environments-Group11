@@ -91,7 +91,9 @@ pipeline {
                         sshCommand remote: remote, command: "docker-compose -f Software-Development-Tools-And-Environments-Group11/docker-compose-build.yml build frontend"
                         
                         
-
+                        sshCommand remote: remote, command: "docker login -u $dockerusername -p $dockerpassword"
+                        sshCommand remote: remote, command: "docker push armphanu/team-11-frontend:1.0.0"
+                        sshCommand remote: remote, command: "docker rmi armphanu/team-11-frontend:1.0.0"
                         
                         
                     
