@@ -254,7 +254,28 @@ export default {
           console.log(err)
         })
     },
-    
+    confrimreport(){
+      this.allreport.push({report: this.reportmodel,userid: this.userid })
+      axios
+        .put('http://localhost:3000/report/' + this.$route.params.id, {
+          report: this.allreport,
+        })
+        .then(() => {
+          axios
+            .get('http://localhost:3000/specificpost/' + this.$route.params.id)
+            .then((res) => {
+              this.allreport = res.data[0].report
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+            this.reportmodel = ''
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+        this.isactive = false
+    }
   },
   created() {
     axios
