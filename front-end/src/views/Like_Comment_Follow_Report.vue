@@ -195,7 +195,33 @@ export default {
           console.log(err)
         })
     },
-    
+    confirmcomment() {
+      this.allcomment.push({
+        first_name: this.first_name,
+        last_name: this.last_name,
+        phone_number: this.phone_number,
+        userid: this.userid,
+        comment: this.comment,
+        email: this.email,
+      })
+      axios
+        .put('http://localhost:3000/comment/' + this.$route.params.id, {
+          comment: this.allcomment,
+        })
+        .then(() => {
+          axios
+            .get('http://localhost:3000/specificpost/' + this.$route.params.id)
+            .then((res) => {
+              this.allcomment = res.data[0].comment
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
     
     
   },
