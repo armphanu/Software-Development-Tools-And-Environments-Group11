@@ -52,4 +52,12 @@ router.put('/profile/:id', async (req, res) => {
   }
   })
 
+
+router.get('/specificuser/:id', async (req, res)=>{
+    const { id } = req.params
+    const user = await User.find({_id : id})
+    res.json(user)
+})
+
+
 exports.router = router;
