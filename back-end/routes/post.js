@@ -54,4 +54,11 @@ router.post('/post', async (req, res) => {
   })
 
 
+router.get('/specificpost/:id', async (req, res)=>{
+    const { id } = req.params
+    const post = await Post.find({_id : id})
+    res.json(post)
+})
+
+
 exports.router = router;
