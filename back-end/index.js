@@ -28,6 +28,10 @@ const registerRouter = require('./routes/Register')
 app.use(registerRouter.router)
 
 
+const comment_like_report = require('./routes/comment_like_report')
+app.use(comment_like_report.router)
+
+
 
 app.listen(PORT, () => {
   console.log(`Application is running on port ${PORT}`)
