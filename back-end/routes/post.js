@@ -75,4 +75,12 @@ router.delete('/post/:id', async (req, res)=>{
 })
 
 
+
+router.get('/allpost', async (req, res)=>{
+  var allpost = (await Post.find({}))
+  res.json(allpost)
+})
+
+
+
 exports.router = router;
