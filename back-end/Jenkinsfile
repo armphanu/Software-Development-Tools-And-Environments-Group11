@@ -80,7 +80,11 @@ pipeline {
                         sshCommand remote: remote, command: "git clone -b matching_post https://github.com/armphanu/Software-Development-Tools-And-Environments-Group11.git"
                         sshCommand remote: remote, command: "docker-compose -f Software-Development-Tools-And-Environments-Group11/docker-compose-build.yml build backtend"
                         
-
+                        
+                        sshCommand remote: remote, command: "docker login -u $dockerusername -p $dockerpassword"
+                        sshCommand remote: remote, command: "docker push armphanu/team-11-backend:1.0.0"
+                        sshCommand remote: remote, command: "docker rmi armphanu/team-11-backend:1.0.0"
+                        
                         
 
 
