@@ -184,7 +184,21 @@ export default {
       reportmodel: ''
     }
   },
-  
+  methods: {
+    postoruserinfo(id) {
+      axios
+        .get('http://localhost:3000/specificpost/' + id)
+        .then((res) => {
+          this.post = res.data[0]
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+    
+    
+    
+  },
   created() {
     axios
       .get('http://localhost:3000/specificpost/' + this.$route.params.id)
