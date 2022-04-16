@@ -185,6 +185,22 @@ export default {
     }
   },
   
+  created() {
+    
+    axios
+      .get('http://localhost:3000/specificuser/' + localStorage.getItem('id'))
+      .then((res) => {
+        this.first_name = res.data[0].first_name
+        this.last_name = res.data[0].last_name
+        this.phone_number = res.data[0].phone_number
+        this.userid = res.data[0]._id
+        this.email = res.data[0].email
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    this.postoruserinfo(this.$route.params.id)
+  },
 }
 
 </script>
