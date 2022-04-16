@@ -60,4 +60,10 @@ router.get('/specificuser/:id', async (req, res)=>{
 })
 
 
+router.get('/alluser', async (req, res)=>{
+  var alluser = (await User.find({}))
+  res.json(alluser)
+})
+
+
 exports.router = router;
