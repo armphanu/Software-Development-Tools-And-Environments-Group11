@@ -163,6 +163,31 @@
   </div>
 </template>
 
+<script>
+import axios from 'axios'
+export default {
+  data() {
+    return {
+      post: [],
+      comment: '',
+      first_name: '',
+      last_name: '',
+      phone_number: '',
+      userid: '',
+      email: '',
+      allcomment: [],
+      color: '',
+      alllike: [],
+      find: 0,
+      countlike: 0,
+      allreport: [],
+      reportmodel: ''
+    }
+  },
+  
+}
+
+</script>
 <style>
 #ment:hover {
   cursor: pointer;
