@@ -67,4 +67,12 @@ router.get('/postforuser/:id', async (req, res)=>{
   res.json(post)
 })
 
+router.delete('/post/:id', async (req, res)=>{
+  const { id } = req.params
+  const filter = { _id: id };
+  await Post.deleteOne( filter )
+  res.send("Delete success").end()
+})
+
+
 exports.router = router;
