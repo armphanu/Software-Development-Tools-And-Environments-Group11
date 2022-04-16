@@ -64,21 +64,29 @@ pipeline {
             }
  
         }
-        stage('deploy') {
+        stage('Build push pull&deploy docker') {
             steps {
-                script{
-                    def remote = [:]
-                    remote.name = "root"
-                    remote.host = '159.223.45.216'
-                    remote.user = 'root'
-                    remote.password = 'xitgmLwmp12q'
-                    remote.allowAnyHosts = true
-                    sshCommand remote: remote, command: "git clone -b matching_post https://github.com/armphanu/Software-Development-Tools-And-Environments-Group11.git"
-                    sshCommand remote: remote, command: "docker-compose -f Software-Development-Tools-And-Environments-Group11/docker-compose-build.yml build backtend"
-                    sshCommand remote: remote, command: "docker-compose -f Software-Development-Tools-And-Environments-Group11/docker-compose-deploy.yml up -d backtend"
-                    sshCommand remote: remote, command: "rm -r Software-Development-Tools-And-Environments-Group11"
+                withCredentials([
+                usernamePassword(credentialsId: 'team11-frontend', passwordVariable: 'password', usernameVariable: 'userName'), 
+                string(credentialsId: 'host_back-team11', variable: 'host'), string(credentialsId: 'name-team11', variable: 'name'), 
+                usernamePassword(credentialsId: 'docker-hub-team11', passwordVariable: 'dockerpassword', usernameVariable: 'dockerusername')]){
+                    script{
+                        def remote = [:]
+                        remote.name = name
+                        remote.host = host
+                        remote.user = userName
+                        remote.password = password
+                        remote.allowAnyHosts = true
+                        sshCommand remote: remote, command: "git clone -b matching_post https://github.com/armphanu/Software-Development-Tools-And-Environments-Group11.git"
+                        sshCommand remote: remote, command: "docker-compose -f Software-Development-Tools-And-Environments-Group11/docker-compose-build.yml build backtend"
+                        
 
+                        
+
+
+                    }
                 }
+
             }
             post{
                 failure{
