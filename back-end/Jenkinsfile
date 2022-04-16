@@ -86,7 +86,10 @@ pipeline {
                         sshCommand remote: remote, command: "docker rmi armphanu/team-11-backend:1.0.0"
                         
                         
-
+                        sshCommand remote: remote, command: "docker pull armphanu/team-11-backend:1.0.0"
+                        sshCommand remote: remote, command: "docker logout"
+                        sshCommand remote: remote, command: "docker-compose -f Software-Development-Tools-And-Environments-Group11/docker-compose-deploy.yml up -d backtend"
+                        sshRemove remote: remote, path: "Software-Development-Tools-And-Environments-Group11"
 
                     }
                 }
