@@ -222,7 +222,38 @@ export default {
           console.log(err)
         })
     },
-    
+    like() {
+      if (this.alllike.length > 0) {
+        for (let i = 0; i < this.alllike.length; i++) {
+          if (this.alllike[i].userid == localStorage.getItem('id')) {
+            this.find = 1
+            if (this.alllike[i].like) {
+              this.alllike[i].like = false
+              this.color = 'black'
+              this.countlike -= 1
+            } else {
+              this.alllike[i].like = true
+              this.color = 'pink'
+              this.countlike += 1
+            }
+          }
+        }
+      }
+      if (this.find == 0) {
+        this.countlike += 1
+        this.color = 'pink'
+        this.alllike.push({ like: true, userid: this.userid })
+        this.find = 0
+      }
+      axios
+        .put('http://localhost:3000/like/' + this.$route.params.id, {
+          like: this.alllike,
+        })
+        .then(() => {})
+        .catch((err) => {
+          console.log(err)
+        })
+    },
     
   },
   created() {
