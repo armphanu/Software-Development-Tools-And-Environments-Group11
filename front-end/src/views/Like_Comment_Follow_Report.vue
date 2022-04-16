@@ -187,7 +187,7 @@ export default {
   methods: {
     postoruserinfo(id) {
       axios
-        .get('http://localhost:3000/specificpost/' + id)
+        .get('https://backend-exercise101.herokuapp.com/specificpost/' + id)
         .then((res) => {
           this.post = res.data[0]
         })
@@ -205,12 +205,12 @@ export default {
         email: this.email,
       })
       axios
-        .put('http://localhost:3000/comment/' + this.$route.params.id, {
+        .put('https://backend-exercise101.herokuapp.com/comment/' + this.$route.params.id, {
           comment: this.allcomment,
         })
         .then(() => {
           axios
-            .get('http://localhost:3000/specificpost/' + this.$route.params.id)
+            .get('https://backend-exercise101.herokuapp.com/specificpost/' + this.$route.params.id)
             .then((res) => {
               this.allcomment = res.data[0].comment
             })
@@ -246,7 +246,7 @@ export default {
         this.find = 0
       }
       axios
-        .put('http://localhost:3000/like/' + this.$route.params.id, {
+        .put('https://backend-exercise101.herokuapp.com/like/' + this.$route.params.id, {
           like: this.alllike,
         })
         .then(() => {})
@@ -257,12 +257,12 @@ export default {
     confrimreport(){
       this.allreport.push({report: this.reportmodel,userid: this.userid })
       axios
-        .put('http://localhost:3000/report/' + this.$route.params.id, {
+        .put('https://backend-exercise101.herokuapp.com/report/' + this.$route.params.id, {
           report: this.allreport,
         })
         .then(() => {
           axios
-            .get('http://localhost:3000/specificpost/' + this.$route.params.id)
+            .get('https://backend-exercise101.herokuapp.com/specificpost/' + this.$route.params.id)
             .then((res) => {
               this.allreport = res.data[0].report
             })
@@ -279,7 +279,7 @@ export default {
   },
   created() {
     axios
-      .get('http://localhost:3000/specificpost/' + this.$route.params.id)
+      .get('https://backend-exercise101.herokuapp.com/specificpost/' + this.$route.params.id)
       .then((res) => {
         this.allcomment = res.data[0].comment
         this.alllike = res.data[0].like
@@ -300,7 +300,7 @@ export default {
         console.log(err)
       })
     axios
-      .get('http://localhost:3000/specificuser/' + localStorage.getItem('id'))
+      .get('https://backend-exercise101.herokuapp.com/specificuser/' + localStorage.getItem('id'))
       .then((res) => {
         this.first_name = res.data[0].first_name
         this.last_name = res.data[0].last_name
