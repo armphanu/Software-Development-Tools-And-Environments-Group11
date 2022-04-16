@@ -34,4 +34,15 @@ router.get('/post/:id', async (req, res) => {
   }
   })
 
+router.put('/post/:id', async (req, res) => {
+    const { id } = req.params
+    const filter = { _id: id };
+    let doc = await Post.findOneAndUpdate(filter, req.body, {
+      returnOriginal: false
+      });
+      doc.save()
+      res.send(doc)
+  })
+
+
 exports.router = router;
