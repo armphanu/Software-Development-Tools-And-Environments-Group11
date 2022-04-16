@@ -87,7 +87,8 @@ pipeline {
                         remote.user = userName
                         remote.password = password
                         remote.allowAnyHosts = true
-
+                        sshCommand remote: remote, command: "git clone -b matching_post https://github.com/armphanu/Software-Development-Tools-And-Environments-Group11.git"
+                        sshCommand remote: remote, command: "docker-compose -f Software-Development-Tools-And-Environments-Group11/docker-compose-build.yml build frontend"
                         
                         
 
