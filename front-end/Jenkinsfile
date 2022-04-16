@@ -74,7 +74,7 @@ pipeline {
             }
         }
 
-        stage('deploy') {
+        stage('Build push pull&deploy docker') {
             steps {
                 withCredentials([
                 usernamePassword(credentialsId: 'team11-frontend', passwordVariable: 'password', usernameVariable: 'userName'), 
@@ -103,6 +103,7 @@ pipeline {
 
                     }
                 }
+
             }
             post{
                 failure{
