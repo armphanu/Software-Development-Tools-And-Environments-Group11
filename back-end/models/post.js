@@ -4,8 +4,12 @@ const Schema = mongoose.Schema
 
 const postSchema = new Schema({
     title: String,
+    userid:String,
     description: String,
     tag: Array,
+    comment:Array,
+    like:Array,
+    report:Array,
   })
   
 
