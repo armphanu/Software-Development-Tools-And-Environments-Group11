@@ -44,5 +44,14 @@ router.put('/post/:id', async (req, res) => {
       res.send(doc)
   })
 
+router.post('/post', async (req, res) => {
+    const payload = req.body
+    console.log(payload)
+    const product = new Post(payload)
+    await product.save()
+    res.send(product)
+    res.status(200).end()
+  })
+
 
 exports.router = router;
