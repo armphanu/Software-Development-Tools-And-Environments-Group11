@@ -96,6 +96,15 @@ pipeline {
 
             }
         }
+
+        stage('Docker test') {
+            steps {
+                sh '''cd back-end
+                npm test --e2e.test.js'''
+
+            }
+        }
+
         stage('Notification') {
             steps {
                 echo 'All Stage pass'
