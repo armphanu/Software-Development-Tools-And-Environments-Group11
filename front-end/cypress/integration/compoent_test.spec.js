@@ -249,7 +249,7 @@ describe('component_test', () => {
      cy.visit('https://exercise-commu-app123.herokuapp.com/profile')
      cy.get('.edit_profile').click()
      cy.url().should('eq', 'https://exercise-commu-app123.herokuapp.com/editProfile')
-     cy.screenshot()
+     
      
           
    })
