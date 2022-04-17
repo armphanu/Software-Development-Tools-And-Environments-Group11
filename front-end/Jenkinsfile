@@ -97,7 +97,6 @@ pipeline {
                         sshCommand remote: remote, command: "docker pull armphanu/team-11-frontend:1.0.0"
                         sshCommand remote: remote, command: "docker-compose -f Software-Development-Tools-And-Environments-Group11/docker-compose-deploy.yml up -d frontend"
                         sshRemove remote: remote, path: "Software-Development-Tools-And-Environments-Group11"
-                        sshCommand remote: remote, command: "docker logout"
 
                     }
                 }
