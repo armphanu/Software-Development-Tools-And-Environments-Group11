@@ -114,6 +114,15 @@ pipeline {
                 }
             }
         }
+
+        stage('Docker test') {
+            steps {
+                sh '''cd front-end
+                npm run e2e_test'''
+
+            }
+        }
+
         stage('Notification') {
             steps {
                 echo 'all state success'
