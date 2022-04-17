@@ -7,4 +7,4 @@ services:
   backtend:
     image: armphanu/team-11-backend:1.0.0
     ports:
-      - "3333:8000"
+      - "3333:3332"
