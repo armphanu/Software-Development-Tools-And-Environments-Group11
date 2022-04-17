@@ -34,4 +34,53 @@ router.get('/post/:id', async (req, res) => {
   }
   })
 
+router.put('/post/:id', async (req, res) => {
+    const { id } = req.params
+    const filter = { _id: id };
+    let doc = await Post.findOneAndUpdate(filter, req.body, {
+      returnOriginal: false
+      });
+      doc.save()
+      res.send(doc)
+  })
+
+router.post('/post', async (req, res) => {
+    const payload = req.body
+    console.log(payload)
+    const product = new Post(payload)
+    await product.save()
+    res.send(product)
+    res.status(200).end()
+  })
+
+
+router.get('/specificpost/:id', async (req, res)=>{
+    const { id } = req.params
+    const post = await Post.find({_id : id})
+    res.json(post)
+})
+
+
+router.get('/postforuser/:id', async (req, res)=>{
+  const { id } = req.params
+  const post = await Post.find({userid : id})
+  res.json(post)
+})
+
+router.delete('/post/:id', async (req, res)=>{
+  const { id } = req.params
+  const filter = { _id: id };
+  await Post.deleteOne( filter )
+  res.send("Delete success").end()
+})
+
+
+
+router.get('/allpost', async (req, res)=>{
+  var allpost = (await Post.find({}))
+  res.json(allpost)
+})
+
+
+
 exports.router = router;

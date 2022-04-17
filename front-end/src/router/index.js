@@ -31,6 +31,11 @@ const routes = [
     name: 'editProfile',
     component: () => import('../views/editProfile.vue')// set login as path '/login'
   },
+  {
+    path: '/Like_Comment_Follow_Report/:id',
+    name: 'Like_Comment_Follow_Report',
+    component: () => import('../views/Like_Comment_Follow_Report.vue')// set login as path '/login'
+  },
 ]
 const router = new VueRouter({
   mode: 'history',

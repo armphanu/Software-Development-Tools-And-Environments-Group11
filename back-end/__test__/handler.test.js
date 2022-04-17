@@ -2,8 +2,7 @@ const request = require("supertest");
 const app = require("../index")
 
 const user_model = require('../models/user');
-const post_model = require('../models/post')
-
+const post_model = require('../models/post');
 
 describe("Test example", () => {
   const mockuserData = [{
@@ -186,7 +185,7 @@ describe("Test example", () => {
     ]
   }];
   const mock_user = jest.spyOn(user_model, 'findOne').mockImplementation(() => mockuserData);;
-  const mock_post = jest.spyOn(post_model, 'findOne').mockImplementation(() => mockuserData);;
+  const mock_post = jest.spyOn(post_model, 'findOne').mockImplementation(() => mockpostData);;
   test("GET /post/:id",  () => {
     request(app)
       .get("/post/62073b323436e1d3be63c7b0")
@@ -197,6 +196,21 @@ describe("Test example", () => {
     request(app)
       .get("/user/62073b323436e1d3be63c7b0")
       .expect("Content-Type", /json/)
+      .expect(200)
+  });
+  test("PUT /comment/:postid",  () => {
+    request(app)
+      .post("/comment/62073b323436e1d3be63c7b0")
+      .expect(200)
+  });
+  test("PUT /like/:postid",  () => {
+    request(app)
+      .post("/like/62073b323436e1d3be63c7b0")
+      .expect(200)
+  });
+  test("PUT /report/:postid",  () => {
+    request(app)
+      .post("/report/62073b323436e1d3be63c7b0")
       .expect(200)
   });
 });

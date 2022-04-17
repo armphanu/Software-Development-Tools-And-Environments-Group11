@@ -84,24 +84,9 @@
       </div>
     </nav>
     <div class="container">
+      <br/>
       <div class="row">
         <div class="col-2">
-          <div class="dropdown float-end">
-        <button
-          class="btn btn-secondary btn-sm dropdown-toggle"
-          type="button"
-          id="dropdownMenuButton1"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          ประเภทโพสต์
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href="#">test</a></li>
-          <li><a class="dropdown-item" href="#">test</a></li>
-          <li><a class="dropdown-item" href="#">test</a></li>
-        </ul>
-      </div>
         </div>
         <div class="col-8">
           <router-view
@@ -126,7 +111,7 @@
               สร้างโพสต์
             </router-link>
             <router-link
-              to="/recommanded"
+              to="/recommend"
               type="button"
               class="list-group-item list-group-item-action"
             >
